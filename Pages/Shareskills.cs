@@ -39,14 +39,13 @@ namespace MARSQA2.Pages
 
         [FindsBy(How=How.CssSelector, Using = "#service-listing-section > div.ui.container > div > form > div:nth-child(4) > div.twelve.wide.column > div > div > div > div > input")]
         public IWebElement tagsBox { get; set; }
+                
+        [FindsBy(How = How.Name, Using = "serviceType")]
+        IList<IWebElement> serviceTypeRadioBtn;
 
-        //[FindsBy(How = How.CssSelector, Using = "#service-listing-section > div.ui.container > div > form > div:nth-child(5) > div.twelve.wide.column > div.inline.fields > div:nth-child(1) > div > input[type=radio]")]
-        //[FindsBy(How =How.CssSelector, Using = "#service-listing-section > div.ui.container > div > form > div:nth-child(5) > div.twelve.wide.column > div.inline.fields > div:nth-child(2) > div > input[type=radio]")]
-        [FindsBy(How =How.XPath, Using = "//*[@id='service - listing - section']/div[2]/div/form/div[5]/div[2]/div[1]/div[1]/div/input")]
-        public IWebElement serviceTypeRadioBtn { get; set; }
+        [FindsBy(How = How.Name, Using = "locationType")]
+        IList<IWebElement> locationTypeRadioBtn;
 
-        [FindsBy(How = How.CssSelector, Using = "#service-listing-section > div.ui.container > div > form > div:nth-child(6) > div.twelve.wide.column > div > div:nth-child(2) > div > input[type=radio]")]
-        public IWebElement locationTypeRadioBtn { get; set; }
 
         //Date selection block starts
 
@@ -98,13 +97,12 @@ namespace MARSQA2.Pages
         [FindsBy(How = How.XPath, Using = "//*[@id='service - listing - section']/div[2]/div/form/div[7]/div[2]/div/div[8]/div[3]/input")]
         public IWebElement saturdayEndtime { get; set; }
 
-        
-        
         //Date selection block ends
 
 
-        [FindsBy(How = How.CssSelector, Using = "#service-listing-section > div.ui.container > div > form > div:nth-child(8) > div:nth-child(2) > div > div:nth-child(1) > div > input[type=radio]")]
-        public IWebElement skillTradeRadioBtn { get; set; }
+
+        [FindsBy(How = How.Name, Using = "skillTrades")]
+        IList<IWebElement> skillTradeRadioBtn;
 
         [FindsBy(How =How.CssSelector, Using = "#service-listing-section > div.ui.container > div > form > div:nth-child(8) > div:nth-child(4) > div > div > div > div > div > input")]
         public IWebElement skillExchangeTag { get; set; }
@@ -112,8 +110,8 @@ namespace MARSQA2.Pages
         [FindsBy(How =How.XPath, Using = "//*[@id='service-listing-section']/div[2]/div/form/div[8]/div[4]/div/div/input")]
         public IWebElement creditInputbox { get; set; }
 
-        [FindsBy(How =How.CssSelector, Using = "#service-listing-section > div.ui.container > div > form > div:nth-child(10) > div.twelve.wide.column > div > div:nth-child(1) > div > input[type=radio]")]
-        public IWebElement activeRadioBtn { get; set; }
+        [FindsBy(How = How.CssSelector, Using = "isActive")]
+        IList<IWebElement> activeRadioBtn;
 
         [FindsBy(How = How.CssSelector, Using = "#service-listing-section > div.ui.container > div > form > div.ui.vertically.padded.right.aligned.grid > div > input.ui.teal.button")]
         public IWebElement saveButton { get; set; }
@@ -140,27 +138,19 @@ namespace MARSQA2.Pages
             
             Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(4) > div.twelve.wide.column > div > div > div > div > input", 2);
             tagsBox.Click();
-
             tagsBox.SendKeys("C#");
             tagsBox.SendKeys(Keys.Enter);
-
             tagsBox.SendKeys("VB");
             tagsBox.SendKeys(Keys.Enter);
-
             tagsBox.SendKeys("Java");
             tagsBox.SendKeys(Keys.Enter);
+                                    
+            serviceTypeRadioBtn.ToList();
+            serviceTypeRadioBtn[0].Click();
+                       
+            locationTypeRadioBtn.ToList();
+            locationTypeRadioBtn[1].Click();
 
-            //Radio buttons Xpaths are not accessible 
-
-            //  Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(5) > div.twelve.wide.column > div.inline.fields > div:nth-child(1) > div > input[type=radio]", 2);
-            //Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(5) > div.twelve.wide.column > div.inline.fields > div:nth-child(2) > div > input[type=radio]", 2);
-            //Wait.WaitForclicable(driver, "XPath", "//*[@id='service - listing - section']/div[2]/div/form/div[5]/div[2]/div[1]/div[1]/div/input", 2);
-            //serviceTypeRadioBtn.Click();
-
-            // Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(6) > div.twelve.wide.column > div > div:nth-child(2) > div > input[type=radio]", 2);
-            //locationTypeRadioBtn.Click();
-
-            
             //Enter dates and times
 
             jse.ExecuteScript("window.scrollBy(0,500)");
@@ -184,9 +174,9 @@ namespace MARSQA2.Pages
 
             jse.ExecuteScript("window.scrollBy(0,800)");
 
-           /* Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(8) > div:nth-child(2) > div > div:nth-child(1) > div > input[type=radio]", 2);
-            skillTradeRadioBtn.Click();
-           */
+            skillTradeRadioBtn.ToList();
+            skillTradeRadioBtn[0].Click();
+           
             Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(8) > div:nth-child(4) > div > div > div > div > div > input", 2);
             skillExchangeTag.Click();
 
@@ -197,8 +187,9 @@ namespace MARSQA2.Pages
             skillExchangeTag.SendKeys("Costing");
             skillExchangeTag.SendKeys(Keys.Enter);
 
-           /* Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(10) > div.twelve.wide.column > div > div:nth-child(1) > div > input[type=radio]", 2);
-            activeRadioBtn.Click();*/
+            //Thread.Sleep(2000);
+           // activeRadioBtn.ToList();
+           // activeRadioBtn[0].Click();
 
             Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div.ui.vertically.padded.right.aligned.grid > div > input.ui.teal.button", 2);
             saveButton.Click();

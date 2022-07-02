@@ -37,6 +37,11 @@ namespace MARSQA2.Utilities
                 wait.Until(ExpectedConditions.ElementToBeClickable(By.Name(locatorValue)));
 
             }
+            if (locator == "LinkText")
+            {
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Name(locatorValue)));
+
+            }
 
         }
 
@@ -65,13 +70,18 @@ namespace MARSQA2.Utilities
                 wait.Until(ExpectedConditions.ElementIsVisible(By.Name(locatorValue)));
 
             }
+            if (locator == "LinkText")
+            {
+                wait.Until(ExpectedConditions.ElementIsVisible(By.Name(locatorValue)));
+
+            }
         }
 
     }
 }
-    
 
 
 
 
-      
+
+

@@ -47,19 +47,34 @@ namespace MARSQA2
         [Test]  
         public void EditFunction()
         {
+            var EditSkills = new EditSkills();
+            PageFactory.InitElements(driver, EditSkills);
+            EditSkills.EditSkillfunction();
+
+
+            EditSkills EditSkillsObj = new EditSkills();
+            PageFactory.InitElements(driver, EditSkillsObj);
+            string newactualTitle = EditSkillsObj.GetEditedSkill(driver);
+            Assert.That(newactualTitle == "Test Analyst", "Actual Title and Expected Title does not match");
+
+            string newSkillExchange = EditSkillsObj.GetEditedSkillExchange(driver);
+            Assert.That(newSkillExchange == "Database", "Actual SkillExchange and Expected SkillExchange does not match");
 
         }
-        
+
         [Test]
         public void DeleteFunction()
         {
+            var DeleteSkills = new DeleteSkills();
+            PageFactory.InitElements(driver, DeleteSkills);
+            DeleteSkills.DeleteSkillsFunction();
 
         }
 
         [TearDown]
         public void Closedown()
         {
-
+            //driver.Close();
         }
     }
 }
