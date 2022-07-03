@@ -4,14 +4,17 @@ using SeleniumExtras.PageObjects;
 using MARSQA2.Utilities;
 using MARSQA2.Pages;
 using NUnit.Framework;
+using OpenQA.Selenium;
 
 namespace MARSQA2
 {
     [TestFixture]
     internal class Program : Commondriver
     {
-        
-        [SetUp]
+        IJavaScriptExecutor jse = (IJavaScriptExecutor)driver;
+
+
+        [OneTimeSetUp]
         public void LoginFunction()
         {
             driver = new ChromeDriver();
@@ -29,7 +32,7 @@ namespace MARSQA2
 
         }
 
-        [Test]
+        [Test, Order(1)]
         public void CreateFunction()
         {
             var Shareskills = new Shareskills();
@@ -44,7 +47,7 @@ namespace MARSQA2
 
         }
 
-        [Test]  
+        [Test, Order (2)]  
         public void EditFunction()
         {
             var EditSkills = new EditSkills();
@@ -57,12 +60,15 @@ namespace MARSQA2
             string newactualTitle = EditSkillsObj.GetEditedSkill(driver);
             Assert.That(newactualTitle == "Test Analyst", "Actual Title and Expected Title does not match");
 
+           /* jse.ExecuteScript("window.scrollBy(0,800)");
+
+
             string newSkillExchange = EditSkillsObj.GetEditedSkillExchange(driver);
             Assert.That(newSkillExchange == "Database", "Actual SkillExchange and Expected SkillExchange does not match");
-
+           */
         }
 
-        [Test]
+        [Test, Order(3)]
         public void DeleteFunction()
         {
             var DeleteSkills = new DeleteSkills();
@@ -71,10 +77,10 @@ namespace MARSQA2
 
         }
 
-        [TearDown]
+        [OneTimeTearDown]
         public void Closedown()
         {
-            //driver.Close();
+          //  driver.Close();
         }
     }
 }
