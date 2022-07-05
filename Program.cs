@@ -12,7 +12,7 @@ namespace MARSQA2
     internal class Program : Commondriver
     {
         IJavaScriptExecutor jse = (IJavaScriptExecutor)driver;
-
+        //
 
         [OneTimeSetUp]
         public void LoginFunction()
@@ -28,7 +28,6 @@ namespace MARSQA2
             var Loginpage = new Loginpage();
             PageFactory.InitElements(driver, Loginpage);
             Loginpage.Loginsteps();
-
 
         }
 
@@ -59,13 +58,7 @@ namespace MARSQA2
             PageFactory.InitElements(driver, EditSkillsObj);
             string newactualTitle = EditSkillsObj.GetEditedSkill(driver);
             Assert.That(newactualTitle == "Test Analyst", "Actual Title and Expected Title does not match");
-
-           /* jse.ExecuteScript("window.scrollBy(0,800)");
-
-
-            string newSkillExchange = EditSkillsObj.GetEditedSkillExchange(driver);
-            Assert.That(newSkillExchange == "Database", "Actual SkillExchange and Expected SkillExchange does not match");
-           */
+                       
         }
 
         [Test, Order(3)]
@@ -80,7 +73,7 @@ namespace MARSQA2
         [OneTimeTearDown]
         public void Closedown()
         {
-          //  driver.Close();
+          driver.Close();
         }
     }
 }

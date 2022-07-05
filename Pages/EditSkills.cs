@@ -13,17 +13,14 @@ namespace MARSQA2.Pages
     internal class EditSkills : Commondriver
     {
         IJavaScriptExecutor jse = (IJavaScriptExecutor)driver;
-
-
-        //[FindsBy(How = How.CssSelector, Using = "#listing-management-section > section.nav-secondary > div > a:nth-child(3)")]
-        [FindsBy(How = How.XPath, Using = "/html/body/div/div/div/section[1]/div/a[3]")]
+            
+        [FindsBy(How = How.CssSelector, Using = "#account-profile-section > div > section.nav-secondary > div > a:nth-child(3)")]
         public IWebElement manageListings { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "#listing-management-section > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(8) > div > button:nth-child(2) > i")]
         public IWebElement editButton { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "#listing-management-section > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(8) > div > button:nth-child(1) > i")]
-        //[FindsBy(How = How.XPath, Using = "//*[@id='listing - management - section']/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[8]/div/button[1]/i")]
         public IWebElement detailBtn { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "#service-detail-section > div.ui.container > div > div:nth-child(1) > div > div > div > div")]
@@ -48,13 +45,14 @@ namespace MARSQA2.Pages
 
         public void EditSkillfunction()
         {
-            // Wait.WaitForclicable(driver, "CssSelector", "#listing-management-section > section.nav-secondary > div > a:nth-child(3)", 4);
-            //Wait.WaitForclicable(driver, "XPath", "//*[@id='listing-management-section']/section[1]/div/a[3]/text()", 2);
-            //Wait.WaitForclicable(driver, "XPath", "/html/body/div/div/div/section[1]/div/a[3]", 2);
-            // manageListings.Click();
+            Wait.WaitForclicable(driver, "CssSelector", "#account-profile-section > div > section.nav-secondary > div > a:nth-child(3)", 2);
+
+            manageListings.Click();
 
             Wait.WaitForclicable(driver, "CssSelector", "#listing-management-section > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(8) > div > button:nth-child(2) > i", 2);
             editButton.Click();
+
+            Wait.WaitForvisible(driver, "Name", "title", 2);
             titleBox.Clear();
             titleBox.SendKeys("Test Analyst");
 
@@ -73,28 +71,7 @@ namespace MARSQA2.Pages
             skillExchangeTag.SendKeys(Keys.Enter);
 
             saveButton.Click();
-
-            /*
-            Shareskills shareskillsObj = new Shareskills();
-            shareskillsObj.titleBox.Clear();
-            Thread.Sleep(1000);
-            shareskillsObj.titleBox.SendKeys("Test Analyst");
-
-            jse.ExecuteScript("window.scrollBy(0,500)");
-
-            shareskillsObj.tagsBox.Click();
-            shareskillsObj.tagsBox.SendKeys(Keys.Backspace);
-            shareskillsObj.tagsBox.SendKeys("Python");
-            shareskillsObj.tagsBox.SendKeys(Keys.Enter);
-
-            jse.ExecuteScript("window.scrollBy(0,800)");
-
-            shareskillsObj.skillExchangeTag.Click();
-            shareskillsObj.skillExchangeTag.SendKeys(Keys.Backspace);
-            shareskillsObj.skillExchangeTag.SendKeys("Database");
-            shareskillsObj.skillExchangeTag.SendKeys(Keys.Enter);
-            */
-
+                       
         }
 
 
@@ -106,7 +83,6 @@ namespace MARSQA2.Pages
             Wait.WaitForvisible(driver, "CssSelector", "#service-detail-section > div.ui.container > div > div:nth-child(1) > div > div > div > div", 2);
             return actualTitle.Text;
                     
-
         }
 
         public string GetEditedSkillExchange(IWebDriver driver)
