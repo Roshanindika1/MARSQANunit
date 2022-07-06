@@ -12,8 +12,7 @@ namespace MARSQA2
     internal class Program : Commondriver
     {
         IJavaScriptExecutor jse = (IJavaScriptExecutor)driver;
-        //
-
+        
         [OneTimeSetUp]
         public void LoginFunction()
         {
@@ -53,7 +52,6 @@ namespace MARSQA2
             PageFactory.InitElements(driver, EditSkills);
             EditSkills.EditSkillfunction();
 
-
             EditSkills EditSkillsObj = new EditSkills();
             PageFactory.InitElements(driver, EditSkillsObj);
             string newactualTitle = EditSkillsObj.GetEditedSkill(driver);
@@ -73,7 +71,7 @@ namespace MARSQA2
         [OneTimeTearDown]
         public void Closedown()
         {
-          driver.Close();
+           driver.Close();
         }
     }
 }

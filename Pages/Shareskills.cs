@@ -110,7 +110,7 @@ namespace MARSQA2.Pages
         [FindsBy(How =How.XPath, Using = "//*[@id='service-listing-section']/div[2]/div/form/div[8]/div[4]/div/div/input")]
         public IWebElement creditInputbox { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "isActive")]
+        [FindsBy(How = How.Name, Using = "isActive")]
         IList<IWebElement> activeRadioBtn;
 
         [FindsBy(How = How.CssSelector, Using = "#service-listing-section > div.ui.container > div > form > div.ui.vertically.padded.right.aligned.grid > div > input.ui.teal.button")]
@@ -154,8 +154,8 @@ namespace MARSQA2.Pages
             //Enter dates and times
 
             jse.ExecuteScript("window.scrollBy(0,500)");
-            startDateBox.SendKeys("05/07/2022");
-            endDateBox.SendKeys("25/07/2022");
+            startDateBox.SendKeys("06/12/2022");
+            endDateBox.SendKeys("13/12/2022");
 
             Wait.WaitForvisible(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(7) > div.twelve.wide.column > div > div:nth-child(2) > div:nth-child(2) > input[type=time]", 2);
             sundayStarttime.SendKeys("09:00am");
@@ -187,9 +187,8 @@ namespace MARSQA2.Pages
             skillExchangeTag.SendKeys("Costing");
             skillExchangeTag.SendKeys(Keys.Enter);
 
-            //Thread.Sleep(2000);
-           // activeRadioBtn.ToList();
-           // activeRadioBtn[0].Click();
+            activeRadioBtn.ToList();
+            activeRadioBtn[1].Click();
 
             Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div.ui.vertically.padded.right.aligned.grid > div > input.ui.teal.button", 2);
             saveButton.Click();
