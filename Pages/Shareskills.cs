@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoItX3Lib;
 
 namespace MARSQA2.Pages
 {
@@ -107,8 +108,11 @@ namespace MARSQA2.Pages
         [FindsBy(How =How.CssSelector, Using = "#service-listing-section > div.ui.container > div > form > div:nth-child(8) > div:nth-child(4) > div > div > div > div > div > input")]
         public IWebElement skillExchangeTag { get; set; }
 
-        [FindsBy(How =How.XPath, Using = "//*[@id='service-listing-section']/div[2]/div/form/div[8]/div[4]/div/div/input")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='service-listing-section']/div[2]/div/form/div[8]/div[4]/div/div/input")]
         public IWebElement creditInputbox { get; set; }
+        
+        [FindsBy(How = How.CssSelector, Using = "#service-listing-section > div.ui.container > div > form > div:nth-child(9) > div > div.twelve.wide.column > section > div > label > div > span > i")]
+        public IWebElement workSampleBtn { get; set; }
 
         [FindsBy(How = How.Name, Using = "isActive")]
         IList<IWebElement> activeRadioBtn;
@@ -120,7 +124,7 @@ namespace MARSQA2.Pages
         public void ManageSkills()
         {
 
-            Wait.WaitForclicable(driver,"CssSelector", "#account-profile-section > div > section.nav-secondary > div > div.right.item > a", 2);
+            Wait.WaitForclicable(driver, "CssSelector", "#account-profile-section > div > section.nav-secondary > div > div.right.item > a", 2);
             shareSkillbutton.Click();
 
             titleBox.SendKeys("Programar");
@@ -129,13 +133,13 @@ namespace MARSQA2.Pages
             categoryDropdownbox.Click();
             Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(3) > div.twelve.wide.column > div > div:nth-child(1) > select > option:nth-child(7)", 2);
             categoryOption.Click();
-            
+
             subCategorybox.Click();
             Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(3) > div.twelve.wide.column > div > div:nth-child(2) > div:nth-child(1) > select > option:nth-child(5)", 2);
             subCategoryOption.Click();
 
             jse.ExecuteScript("window.scrollBy(0,500)");
-            
+
             Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(4) > div.twelve.wide.column > div > div > div > div > input", 2);
             tagsBox.Click();
             tagsBox.SendKeys("C#");
@@ -144,10 +148,10 @@ namespace MARSQA2.Pages
             tagsBox.SendKeys(Keys.Enter);
             tagsBox.SendKeys("Java");
             tagsBox.SendKeys(Keys.Enter);
-                                    
+
             serviceTypeRadioBtn.ToList();
             serviceTypeRadioBtn[0].Click();
-                       
+
             locationTypeRadioBtn.ToList();
             locationTypeRadioBtn[1].Click();
 
@@ -176,7 +180,7 @@ namespace MARSQA2.Pages
 
             skillTradeRadioBtn.ToList();
             skillTradeRadioBtn[0].Click();
-           
+
             Wait.WaitForclicable(driver, "CssSelector", "#service-listing-section > div.ui.container > div > form > div:nth-child(8) > div:nth-child(4) > div > div > div > div > div > input", 2);
             skillExchangeTag.Click();
 
@@ -186,6 +190,16 @@ namespace MARSQA2.Pages
             skillExchangeTag.SendKeys(Keys.Enter);
             skillExchangeTag.SendKeys("Costing");
             skillExchangeTag.SendKeys(Keys.Enter);
+
+           /* workSampleBtn.Click();
+            AutoItX3 autoIt = new AutoItX3();
+            autoIt.WinActivate("Open");
+            Thread.Sleep(1000);
+            autoIt.Send(@"C: \Users\rosha\source\repos\Roshanindika1\POM Test\MARSQA2\MARSQA2\MARS Project.pdf");
+            Thread.Sleep(1000);
+            autoIt.Send("{ Enter}");
+            Thread.Sleep(1000);
+           */
 
             activeRadioBtn.ToList();
             activeRadioBtn[1].Click();

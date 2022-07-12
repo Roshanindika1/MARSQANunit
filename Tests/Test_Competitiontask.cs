@@ -9,7 +9,7 @@ using OpenQA.Selenium;
 namespace MARSQA2
 {
     [TestFixture]
-    internal class Program : Commondriver
+    internal class Test_Competitiontask : Commondriver
     {
         IJavaScriptExecutor jse = (IJavaScriptExecutor)driver;
         
@@ -71,7 +71,7 @@ namespace MARSQA2
         [OneTimeTearDown]
         public void Closedown()
         {
-           driver.Close();
+           //driver.Close();
         }
     }
 }
