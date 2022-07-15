@@ -1,14 +1,8 @@
 ﻿using MARSQA2.Utilities;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using SeleniumExtras.PageObjects;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoItX3Lib;
 
 namespace MARSQA2.Pages
 {
