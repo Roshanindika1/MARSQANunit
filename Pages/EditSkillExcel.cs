@@ -6,43 +6,44 @@ using System.IO;
 using DataTable = System.Data.DataTable;
 using OfficeOpenXml.Style;
 
+using System.Drawing;
+using System.Linq;
+
 namespace MARSQA2.Pages
 {
     public class EditSkillExcel : Commondriver
     {
         
         public void EditExcel()
-        {
-            string filename = "MARS Project.xlsx";
-            ExcelPackage ExcelPkg = new ExcelPackage();
-            ExcelWorksheet wsSheet1 = ExcelPkg.Workbook.Worksheets.Add("Sheet1");
+        {  
 
+            string filename = "MARS Project.xlsx";
             string filePath = Directory.GetParent(@"../../../").FullName
                 + Path.DirectorySeparatorChar + "DataReader"
                 + Path.DirectorySeparatorChar + filename;
-            
 
-            int recordIndex = 2;
+            FileInfo fileInfo = new FileInfo(filePath);
+
+            ExcelPackage package = new ExcelPackage(fileInfo);
+            ExcelWorksheet worksheet = package.Workbook.Worksheets.FirstOrDefault();
+
+            worksheet.Cells[2, 1].Value = "Test Analyst";
+            worksheet.Cells[2, 3].Value = "Design";
 
 
-            wsSheet1.Cells[recordIndex, 1].Value = "Test Analyst";
-            
-            wsSheet1.Column(1).AutoFit();
-            
-
-            wsSheet1.Protection.IsProtected = false;
-            wsSheet1.Protection.AllowSelectLockedCells = false;
-            ExcelPkg.SaveAs(filePath);
-
+            // save changes
+            package.Save();
+           
         }
-
-        public string readdataExcel()
+        public string getTitleexcel(IWebDriver driver)
         {
             DataReaderExcel reader = new DataReaderExcel();
             DataTable dt = reader.readData();
+
             return dt.Rows[0][0].ToString();
+
         }
-       
+             
     }
     
 }

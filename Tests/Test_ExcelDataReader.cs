@@ -68,7 +68,11 @@ namespace MARSQA2
             var EditSkillExcel = new EditSkillExcel();
             PageFactory.InitElements(driver, EditSkillExcel);
             EditSkillExcel.EditExcel();
-          
+
+            EditSkillExcel EditSkillExcelObj = new EditSkillExcel();
+            PageFactory.InitElements(driver, EditSkillExcelObj);
+            string newTitle = EditSkillExcelObj.getTitleexcel(driver);
+            Assert.That(newTitle == "Test Analyst", "Actual Title and Expected Title does not match");
         }
 
         /*
